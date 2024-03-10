@@ -16,33 +16,45 @@ if(isset($_SESSION['idu'])) {
 </head>
 <body>
 <header class="liseret">
-       <nav class="container">
-            <a class="Accueil" href="home.php"> Accueil</a>
-            <a class="Propos" href="recherche.php"> Rechercher</a>
+
+<!-- <nav>
+    <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">À Propos</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav> -->
+       <nav>
+       <ul>
+            <li><a class="accueil" href="home.php"> Accueil</a></li>
+            <li><a class="recherche" href="recherche.php"> Rechercher</a></li>
             
             <?php
                 if(isset($_SESSION["prenom"])) {
                     if($_SESSION["admin"] == 0) {
             ?>
-                        <a class="fav" href="favoris.php"> Mes favoris </a>
-                        <a class="pan" href="panier.php"> Mon panier </a>
+                        <li><a class="fav" href="favoris.php"> Mes favoris </a></li>
+                        <li><a class="pan" href="panier.php"> Mon panier </a></li>
+                        <li><a class="com" href="compte.php"> Mon compte </a></li>
                         <?php
                             } else {
                         ?>
-                                <a class="co" href="AjoutAnnonce.php"> Ajouter Annonce</a>
+                                <li><a class="co" href="produits.php"> Les produits </a></li>
                         <?php
                             }
                         ?>
-                <a class="co" href="deconnexion.php"> Deconnexion</a>
+                <li><a class="co" href="deconnexion.php"> Deconnexion</a></li>
             <?php
             }else{
             ?>
-                <a class="co" href="Connexion.php"> Connexion</a>
+                <li><a class="co" href="Connexion.php"> Connexion</a></li>
             <?php
             }
             ?>
             
             <!-- Rajouter un if qd user connecté affiche connexion et sinon deconnexion -->
+        </ul>
         </nav>
     </header>
 </body>

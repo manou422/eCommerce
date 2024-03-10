@@ -29,7 +29,7 @@ include "connect.php";
     <title> Connexion </title>
 </head>
 <body>
-    <div class="bulle">
+    <div class="carte">
     <h1> Connexion </h1>
     <form action="" method="post">
        <div class="items"><p id="mail"> E-mail : <input type="text" name="mail" placeholder="Ton mail : " required></div>
