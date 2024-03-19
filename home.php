@@ -19,10 +19,11 @@
                     echo "<h1>".'Bienvenue'." ".$_SESSION['prenom']."</h1>";
                     include "liseret.php";
                 } else {
-                    echo "<h1>".'Bienvenue'."</h1>";
+                    echo "<h1>".'Bienvenue invité'."</h1>";
                     include "liseret.php";
                 }
             ?>
+            <!-- <img src="images/vetements.jpg"> -->
         </div>
     </body>
 </html>

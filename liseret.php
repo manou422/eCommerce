@@ -40,7 +40,8 @@ if(isset($_SESSION['idu'])) {
                         <?php
                             } else {
                         ?>
-                                <li><a class="co" href="produits.php"> Les produits </a></li>
+                                <li><a class="pr" href="produits.php"> Les produits </a></li>
+                                <li><a class="ut" href="utilisateurs.php"> Les utilisateurs </a></li>
                         <?php
                             }
                         ?>
