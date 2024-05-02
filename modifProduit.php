@@ -2,7 +2,6 @@
 	session_start();
 	include "liseret.php";
 	include "connect.php";
-    $prenom = $_SESSION['idu'];
 ?>
 
 <!DOCTYPE html>
@@ -15,25 +14,34 @@
 </head>
 <body>
 
+    <h1>Modifier un produit<h1>
+
 <?php
-$req = "select * from users where prenom = $prenom";
+$num = $_POST["num"];
+include "connect.php";
+$req = "select * from produits where idp = $num";
 $res = mysqli_query($id, $req);
 $ligne = mysqli_fetch_assoc($res);
+$categorie = $ligne["categorie"];
+$nom = $ligne["nom"];
+$couleur = $ligne["couleur"];
+$stock = $ligne["stock"];
+$prix = $ligne["prix"];
+$description = $ligne["description"];
+$photo = $ligne['photo'];
 ?>
-
-<h1>Mon compte<h1>
 
 
 <div class="container">
     <form action="" class="form" method="post">
-    	<input required="" class="input" type="text" name="nom" placeholder="Nom du produit" value="<?=$ligne['nom']?>">
-    	<input required="" class="input" type="text" name="categorie" placeholder="Catégorie" value=" <?php echo $ligne["categorie"]; ?>">
-		<input required="" class="input" type="text" name="couleur" placeholder="Couleur" value=" <?php echo $ligne["couleur"]; ?>">
-		<input required="" class="input" type="number" name="stock" placeholder="Stock" value="<?php echo $ligne["stock"]; ?>">
-		<input required="" class="input" type="number" name="prix" placeholder="prix" value="<?php echo $ligne["prix"]; ?>">
-		<input required="" class="input" type="file" name="photo" placeholder="photo" value="<?php echo $ligne["photo"]; ?>">
+    	<input required="" class="input" type="text" name="nom" placeholder="Nom du produit" value="<?=$nom?>">
+    	<input required="" class="input" type="text" name="categorie" placeholder="Catégorie" value="<?=$categorie?>">
+		<input required="" class="input" type="text" name="couleur" placeholder="Couleur" value="<?=$couleur?>">
+		<input required="" class="input" type="number" name="stock" placeholder="Stock" value="<?=$stock?>">
+		<input required="" class="input" type="number" name="prix" placeholder="prix" value="<?=$prix?>">
+		<input required="" class="input" type="file" name="photo" placeholder="photo" value="<?=$photo?>">
 		<div class="description">
-    		<textarea class="input" placeholder="Description..." cols="50" rows="5" name="description"> <?php echo $ligne["description"]; ?> </textarea>
+    		<textarea class="input" placeholder="Description..." cols="50" rows="5" name="description"> <?=$description?> </textarea>
   		</div>
           <input type="hidden" name="num" value="<?=$num?>">
           <p><input type="submit" value="Modifier" name="modif"></p>

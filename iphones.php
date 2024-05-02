@@ -1,6 +1,6 @@
 <?php
-	session_start();
-	include "liseret.php";
+    session_start();
+    include "liseret.php";
 ?>
 
 <!DOCTYPE html>
@@ -9,43 +9,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="produits.css">
-    <title>Les produits</title>
+    <title>Les Iphones</title>
 </head>
 <body>
-    <h1>Les produits<h1>
+
+    <h1>Les Iphones</h1>
+ 
+<div class="cartes-container">
     <?php
-        if(isset($_SESSION["prenom"])) {
-            if($_SESSION["admin"] == 1) {
-                ?>
-            <a href="ajoutProduit.php" class="ajouter">
-                <button>
-                    <span class="text">
-                        Ajouter 
-                    </span>
-                </button>
-            </a>
-        <?php
-            }
-        }
-        ?>
-    <div class="recherche">
-        <form action="produits.php" method="POST">
-            <div class="InputContainer">
-                <input placeholder="Search.." class="input" type="text" name="recherche">
-                <input class="bouttonRecherche" type="submit" value="Rechercher" name="envoyer">
-            </div>
-        </form>
-    </div>
-    
-    <div class="cartes-container">
-    <?php
-        $req = "SELECT idp,nom,couleur,stock,prix,description,photo from produits";
-        if (isset($_POST["envoyer"])) {
-            $rech = $_POST["recherche"];
-            if($_POST["recherche"]!=="") {
-                $req = "select * from produits where nom like '%$rech%'";
-            }
-        }
+    $req = "SELECT idp,nom,couleur,stock,prix,description,photo from produits WHERE categorie='iphone'";
         $res = mysqli_query($id, $req);
         while ($ligne = $res->fetch_assoc()) {
             $num = $ligne["idp"];
@@ -57,8 +29,7 @@
                 <p class="card__description"> <?php echo $ligne["description"] ?> </p>
                 <p class="card__prix"> <?php echo $ligne["prix"]."€" ?> </p>
                 <?php
-                    if(isset($_SESSION["prenom"])) {
-                        if($_SESSION["admin"] == 1) {
+                    if($_SESSION["admin"] == 1) {
                 ?>
                 <br>
                 <form action="modifProduit.php" method="post">
@@ -73,7 +44,6 @@
 
                 <?php
                     }
-                }
                 ?>
             </div>
         </div>
@@ -81,6 +51,18 @@
         }
         ?>
 
- 
+<?php
+        if($_SESSION["admin"] == 1) {
+            ?>
+    <a href="ajoutProduit.php">
+        <button>
+            <span class="text">
+                Ajouter 
+            </span>
+        </button>
+    </a>
+    <?php
+        }
+    ?>
 </body>
 </html>

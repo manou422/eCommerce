@@ -1,0 +1,19 @@
+.page {
+	text-align: center;
+	border: solid;
+	margin: 100px 200px 300px 400px;
+	width: 600px;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 9%,
+      rgba(9, 9, 121, 1) 68%,
+      rgba(0, 91, 255, 1) 97%
+    );
+    backdrop-filter: blur(9px);
+    border-radius: 12px;
+    padding: 90px 90px 90px 90px;
+}
+.user {
+  color: #fff;
+}

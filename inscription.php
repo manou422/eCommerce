@@ -10,20 +10,22 @@ include "connect.php";
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="connexion.css">
         <title> Inscription </title>
     </head>
     <body>
-        <div class="carte">
+        <div class="wrapper">
             <h1> Inscription </h1>
             <form method="post">
-                <div class="items"><p id="nom"> Nom : <input type="text" name="nom" placeholder="Ton Nom :" required></div>
-                <div class="items"><p id="prenom"> Prenom : <input type="text" name="prenom" placeholder="Ton Prénom :" required></div>
-                <div class="items"><p id="mail"> E-mail : <input type="text" name="mail" placeholder="Ton Mail :" required></div>
-                <div class="items"><p id="adresse"> Adresse : <input type="text" name="adresse" placeholder="Ton adresse :" required></div>
-                <div class="items"><p id="mdp"> Mot de passe : <input type="password" name="mdp" placeholder="Ton Mot de Passe :" required></div>
-                <p>Déjà inscrit ? - Connecte toi <a href="connexion.php">ici</a></p>
-    	        <input id="enregistrer" type="submit" value="Je m'enregistre !" name="soumettre">
+                <div class="input-box"><input type="text" name="nom" placeholder="Ton Nom :" required></div>
+                <div class="input-box"><input type="text" name="prenom" placeholder="Ton Prénom :" required></div>
+                <div class="input-box"><input type="email" name="mail" placeholder="Ton Mail :" required></div>
+                <div class="input-box"><input type="text" name="adresse" placeholder="Ton adresse :" required></div>
+                <div class="input-box"><input type="password" name="mdp" placeholder="Ton Mot de Passe :" required></div>
+    	        <input class="btn" type="submit" value="Inscription" name="soumettre">
+                <div class="register-link">
+                    <p>Déjà inscrit ? - Connecte toi <a href="connexion.php">ici</a></p>
+                </div>
             </form>
         </div>
         <?php
