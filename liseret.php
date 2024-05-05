@@ -24,6 +24,7 @@ if(isset($_SESSION['idu'])) {
             <a href="produits.php">Toutes les catégories</a>
             <a href="iphones.php">Les Iphones</a>
             <a href="samsungs.php">Les Samsungs</a>
+            <a href="hauweis.php">Les Hauweis</a>
         </div>
     </li>
     <?php

@@ -20,32 +20,19 @@
 
 <div class="container">
     <form action="" class="form" method="post">
-	<?php
-		$req = "SELECT * from users WHERE idu = '$idu'";
-		$result = $id->query($req);
-		$ligne = $result->fetch(PDO::FETCH_ASSOC);
-	?>
-    	<input required="" class="input" type="text" name="nom"value="<?php echo $ligne["nom"]; ?>">
-    	<input required="" class="input" type="text" name="prenom" value=" <?php echo $ligne["prenom"]; ?>">
-		<input required="" class="input" type="text" name="mail" value=" <?php echo $ligne["mail"]; ?>">
-		<p><button> <a href="modifMdp.php"> Modifier le mot de passe </a> </button></p>
+    	<input required="" class="input" type="password" name="mdp">
         <p><button><input class="modif" type="submit" value="Modifier" name="modif"></button></p>
     </form>
 </div>
 
 <?php
         if(isset($_POST["modif"])){
-			$nom = $_POST["nom"];
-            $prenom = $_POST["prenom"];
-            $mail = $_POST["mail"];
+			$mdp = $_POST["mdp"];
 
             $req = "UPDATE users
-						SET nom = '$nom',
-							prenom = '$prenom',
-							mail = '$mail'
+						SET mdp = '$mdp'
 						WHERE idu = $idu";
             $result = $id->query($req);
-			$_SESSION["prenom"] = $prenom;
             header("Location:home.php");
         }
 

@@ -14,12 +14,26 @@
 <body>
 
     <h1>Les Iphones</h1>
+
+    <?php
+        if($_SESSION["admin"] == 1) {
+            ?>
+    <a href="ajoutProduit.php">
+        <button>
+            <span class="text">
+                Ajouter 
+            </span>
+        </button>
+    </a>
+    <?php
+        }
+    ?>
  
 <div class="cartes-container">
     <?php
     $req = "SELECT idp,nom,couleur,stock,prix,description,photo from produits WHERE categorie='iphone'";
-        $res = mysqli_query($id, $req);
-        while ($ligne = $res->fetch_assoc()) {
+    $result = $id->query($req);
+        while ($ligne = $result->fetch(PDO::FETCH_ASSOC)) {
             $num = $ligne["idp"];
         ?>
         <div class="card">
@@ -50,19 +64,5 @@
         <?php
         }
         ?>
-
-<?php
-        if($_SESSION["admin"] == 1) {
-            ?>
-    <a href="ajoutProduit.php">
-        <button>
-            <span class="text">
-                Ajouter 
-            </span>
-        </button>
-    </a>
-    <?php
-        }
-    ?>
 </body>
 </html>

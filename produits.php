@@ -29,7 +29,7 @@
         }
         ?>
     <div class="recherche">
-        <form action="produits.php" method="POST">
+        <form action="" method="POST">
             <div class="InputContainer">
                 <input placeholder="Search.." class="input" type="text" name="recherche">
                 <input class="bouttonRecherche" type="submit" value="Rechercher" name="envoyer">
@@ -46,8 +46,8 @@
                 $req = "select * from produits where nom like '%$rech%'";
             }
         }
-        $res = mysqli_query($id, $req);
-        while ($ligne = $res->fetch_assoc()) {
+        $result = $id->query($req);
+        while ($ligne = $result->fetch(PDO::FETCH_ASSOC)) {
             $num = $ligne["idp"];
         ?>
         <div class="card">
@@ -67,9 +67,38 @@
                 </form>
                 <?php
                     } else {
+                        $favorisName = "Ajouter aux favoris";
+                        $idUser = $_SESSION['idu'];
+                        $idp = "SELECT idp from favoris WHERE idu = $idUser";
+                        $resId = $id->query($idp);
+                        if($resId->rowCount() !=0) {
+                            while ($row = $resId->fetch(PDO::FETCH_ASSOC)) {
+                                if(($row['idp'] == $ligne["idp"])) {
+                                    $favorisName = "Supprimer des favoris";
+                                }
+                            }
+                        }
+
+                        $panierName = "Ajouter au panier";
+                        $idUser = $_SESSION['idu'];
+                        $idp = "SELECT idp from panier WHERE idu = $idUser";
+                        $resId = $id->query($idp);
+                        if($resId->rowCount() !=0) {
+                            while ($row = $resId->fetch(PDO::FETCH_ASSOC)) {
+                                if(($row['idp'] == $ligne["idp"])) {
+                                    $panierName = "Supprimer du panier";
+                                }
+                            }
+                        }
                 ?>      
-                    <button id="fav">Ajouter aux favoris</button><br>
-                    <button>Ajouter au panier</button>
+                    <button><form action="" method="post" class=fav>
+                        <input type="hidden" name="envoyerFavoris" value="<?php echo $ligne["idp"] ?>">
+                        <input type="submit" value="<?php echo $favorisName ?>">
+                    </form></button><br>
+                    <button><form action="" method="post" class=panier>
+                        <input type="hidden" name="envoyerPanier" value="<?php echo $ligne["idp"] ?>">
+                        <input type="submit" value="<?php echo $panierName ?>">
+                    </form></button>
 
                 <?php
                     }
@@ -79,7 +108,37 @@
         </div>
         <?php
         }
+
+        if(isset($_POST['envoyerFavoris'])) {
+            $productId = $_POST['envoyerFavoris'];
+            $userId = $_SESSION["idu"];
+            $req = "";
+            $verif = "SELECT idu,idp from favoris WHERE idu = $userId AND idp = $productId";
+            $result = $id->query($verif);
+            if($result->rowCount() == 0) {
+                $req = "INSERT INTO favoris (idf,idu,idp) VALUES (null,'$userId', '$productId')";
+            } else {
+                $req = "DELETE FROM favoris WHERE idu = $userId AND idp = $productId";
+            }
+            $id->query($req);
+        }
+
+        if(isset($_POST['envoyerPanier'])) {
+            $productId = $_POST['envoyerPanier'];
+            $userId = $_SESSION["idu"];
+            $req = "";
+            $verif = "SELECT idu,idp from panier WHERE idu = $userId AND idp = $productId";
+            $result = $id->query($verif);
+            if($result->rowCount() == 0) {
+                $req = "INSERT INTO panier (id_panier,idu,idp) VALUES (null,'$userId', '$productId')";
+            } else {
+                $req = "DELETE FROM panier WHERE idu = $userId AND idp = $productId";
+            }
+            $id->query($req);
+        }
         ?>
+
+
 
  
 </body>

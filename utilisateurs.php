@@ -29,8 +29,8 @@
   <tbody>
     <?php
         $req = "SELECT nom,prenom,mail FROM users";
-        $rep = mysqli_query($id,$req);
-        while($ligne = $rep->fetch_assoc()) {
+        $result = $id->query($req);
+        while($ligne = $result->fetch(PDO::FETCH_ASSOC)) {
             echo "<tr><td>".$ligne["prenom"]."</td><td>".$ligne["nom"]."</td><td>".$ligne["mail"]."</td></tr>";
         }
         

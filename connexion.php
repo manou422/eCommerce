@@ -5,9 +5,9 @@ include "connect.php";
         $mail = $_POST["mail"];
         $mdp = $_POST["mdp"];
         $req = "SELECT * FROM users WHERE mail = '$mail' and mdp = '$mdp'";
-        $res = mysqli_query($id, $req);
-        $ligne = mysqli_fetch_assoc($res);
-        if(mysqli_num_rows($res) > 0) {
+        $result = $id->query($req);
+        $ligne = $result->fetch(PDO::FETCH_ASSOC);
+        if($result->rowCount() > 0) {
             $_SESSION["idu"] = $ligne["idu"];
             $_SESSION["prenom"] = $ligne["prenom"];
             $_SESSION["nom"] = $ligne["nom"];

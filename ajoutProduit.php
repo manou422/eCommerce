@@ -41,7 +41,7 @@
 			$photo = $_FILES['photo']['name'];
             $req = "INSERT INTO produits 
                     VALUES (null, '$categorie', '$nom', '$couleur', '$stock', '$prix', '$description', '$photo')";
-            mysqli_query($id, $req);
+            $result = $id->query($req);
             header("location:home.php");
         }
 

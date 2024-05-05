@@ -23,24 +23,16 @@
                 }
                 include "liseret.php";
                 $sql = "SELECT * FROM produits";
-                $result = mysqli_query($id,$sql);
-
-                if ($result->num_rows > 0) {
-                    $products = array();
-                    while($row = $result->fetch_assoc()) {
-                        $products[] = $row;
-                    }
-                } else {
-                    echo "Aucun produit trouvé dans la base de données.";
-                }
+                // $result = mysqli_query($id,$sql);
+                $result = $id->query($sql);
 
                 $max_price = 0;
                 $max_product = null;
 
-                foreach ($products as $product) {
-                    if ($product["prix"] > $max_price) {
-                        $max_price = $product["prix"];
-                        $max_product = $product;
+                foreach ($result as $row) {
+                    if ($row["prix"] > $max_price) {
+                        $max_price = $row["prix"];
+                        $max_product = $row;
                     }
                 }
 

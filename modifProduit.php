@@ -20,8 +20,8 @@
 $num = $_POST["num"];
 include "connect.php";
 $req = "select * from produits where idp = $num";
-$res = mysqli_query($id, $req);
-$ligne = mysqli_fetch_assoc($res);
+$result = $id->query($req);
+$ligne = $result->fetch(PDO::FETCH_ASSOC);
 $categorie = $ligne["categorie"];
 $nom = $ligne["nom"];
 $couleur = $ligne["couleur"];
@@ -67,7 +67,7 @@ $photo = $ligne['photo'];
 							description = '$description',
 							photo = '$photo'
 						WHERE idp = $num";
-            mysqli_query($id, $req);
+            $id->query($req);
             header("Location:produits.php");
         }
 
