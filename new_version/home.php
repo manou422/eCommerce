@@ -42,7 +42,7 @@ if ($result2->rowCount() > 0) {
 </head>
 <body>
 
-<h1>Graphiques Circulaires</h1>
+<h1> Les Statistiques </h1>
 <div class="product-grid">
 
 <div class='card'>
@@ -118,6 +118,10 @@ if ($result2->rowCount() > 0) {
         }
     });
 </script>
+
+<?php
+    include "footer.php";
+?>
 
 </body>
 </html>
