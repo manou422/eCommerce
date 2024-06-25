@@ -57,14 +57,8 @@
 						if(isset($_SESSION["prenom"])) {
 							if($_SESSION["admin"] == 0) {
 						?>
-                        		<button type='submit' name='favoris'>Ajouter aux favoris</button>
-                        		<button type='submit' name='panier'>Ajouter au panier</button>
+                        		<button type='submit' name='panier'>Supprimer du panier</button>
 						<?php
-							} else if ($_SESSION["admin"] == 1) {
-								?>
-								<button type='submit' name='modifier'>Modifier</button>
-                        		<button type='submit' name='supprimer'>Supprimer</button>
-								<?php
 							}
 						}
 							?>
@@ -79,19 +73,6 @@
     </div>
 
     <?php
-        if(isset($_POST["favoris"])) {
-            $productId = $_POST['favoris'];
-            $userId = $_SESSION["idu"];
-            $req = "";
-            $verif = "SELECT idu,idp from favoris WHERE idu = $userId AND idp = $productId";
-            $result = $id->query($verif);
-            if($result->rowCount() == 0) {
-                $req = "INSERT INTO favoris (idf,idu,idp) VALUES (null,'$userId', '$productId')";
-            } else {
-                $req = "DELETE FROM favoris WHERE idu = $userId AND idp = $productId";
-            }
-            $id->query($req);
-        }
 
         if(isset($_POST["panier"])) {
             $productId = $_POST["produit_id"];

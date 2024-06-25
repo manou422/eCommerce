@@ -14,6 +14,7 @@ include "connect.php";
             $_SESSION["mail"] = $ligne["mail"];
             $_SESSION["mdp"] = $mdp;
             $_SESSION["admin"] = $ligne["admin"];
+            
             if($_SESSION["admin"] == 1) {
                 header("location:home.php");
             } else {

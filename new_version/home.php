@@ -3,7 +3,6 @@ session_start();
 include "connect.php";
 include "liseret.php";
 
-// Requête SQL pour récupérer les données
 $req = "SELECT produits.nom, count(panier.idp) as nom_produits from produits inner join panier ON produits.idp = panier.idp group by produits.nom desc";
 $result = $id->query($req);
 
